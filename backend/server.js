@@ -2,6 +2,9 @@ const dotenv=require('dotenv');
 const express=require('express');
 const connectDB=require('./config/db');
 const cors = require('cors');
+const useRoutes = require('./routes/userRoutes');
+
+
 
 
 
@@ -9,8 +12,7 @@ const cors = require('cors');
 dotenv.config();
 
 
-//connect to the mongoDB
-connectDB();
+
 
 const app =express(); // init express app
 
@@ -18,6 +20,12 @@ const app =express(); // init express app
 
 app.use(cors());
 app.use(express.json());  
+
+//connect to the mongoDB
+connectDB();
+
+
+app.use('/api/users', useRoutes);
 
 
 app.get('/',(req,res)=> {
