@@ -3,6 +3,7 @@ const express=require('express');
 const connectDB=require('./config/db');
 const cors = require('cors');
 const useRoutes = require('./routes/userRoutes');
+const problemRoutes =require('./routes/problemRoutes')
 
 
 
@@ -26,6 +27,8 @@ connectDB();
 
 
 app.use('/api/users', useRoutes);
+
+app.use('/api/problems',problemRoutes)
 
 
 app.get('/',(req,res)=> {

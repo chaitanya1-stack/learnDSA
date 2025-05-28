@@ -24,4 +24,4 @@ userSchema.pre('save',async function (next) {
 });
 
 // Exports the model named 'user' (MongoDB will make it users collection).
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);
