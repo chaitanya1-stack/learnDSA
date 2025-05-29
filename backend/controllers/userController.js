@@ -58,8 +58,6 @@ const loginUser= async(req,res)=> {
 };
 
 
-const getCurrentUser = async (req, res) => {
-  res.json(req.user); // user is added in middleware
-};
 
-module.exports = {registerUser, loginUser,getCurrentUser};
+
+module.exports = {registerUser, loginUser};
