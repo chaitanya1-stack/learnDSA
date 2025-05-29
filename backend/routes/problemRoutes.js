@@ -9,8 +9,8 @@ const { addProblem,
 
 router.post('/', protect, addProblem);
 router.get('/', protect, getProblems);
-router.post('/', protect, updateProblem);
-router.get('/', protect, deleteProblem);
-router.get('/', protect, getBookmarkedProblems);
+router.put('/:id', protect, updateProblem);
+router.delete('/:id', protect, deleteProblem);
+router.get('/bookmarked', protect, getBookmarkedProblems);
 
 module.exports = router;
