@@ -6,6 +6,13 @@ const registerUser =async (req,res) =>{
     const {username, email, password} =req.body;
 
     try{
+           const existingUser = await User.findOne({ email: email.trim().toLowerCase() });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+
+
+
         const user =await
         User.create({username, email, password});
         const token = jwt.sign({ id: user._id},
