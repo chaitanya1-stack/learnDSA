@@ -1,23 +1,52 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './loginPage.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import api, { setAuthToken } from '../api';//
 
 
 function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
 
-  const handleSubmit = e => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.email && formData.password) {
-      setMessage('Login successful (simulated)');
-    } else {
-      setMessage('Please fill in both fields');
+    try {
+      const res = await api.post('/users/login', formData); // backend login route
+      const { token, user } = res.data;
+
+      localStorage.setItem('token', token);
+      setAuthToken(token);
+      toast.success(`🎉 Welcome, ${user.username}!`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      
+
+     // setMessage(`Welcome, ${user.username}!`);   im using toast in place of this
+
+
+      // Optional: redirect to dashboard
+      // navigate('/dashboard'); // if using react-router-dom
+
+    } catch (err) {
+      setMessage(err.response?.data?.error || 'Login failed');
     }
+
   };
+  
 
   return (
     <div className= "completeBox">
@@ -51,10 +80,12 @@ function LoginPage() {
     <div className="boldtext" ><span className="learnDSA">learnDSA</span> <span className="dot">Master Data Structures and Algorithms with curated problems, real-time progress tracking, and smart filters. LearnDSA helps you stay consistent, sharpen logic, and crack top tech interviews with confidence.</span> </div>
     <div className="new_here_create">
     <div className="new">
-  new here? <a href="#" className="create">create an account</a>
-   </div>
-   </div>
+    new here? <Link to="/register" className="create">create an account</Link>
 
+   </div>
+   </div>
+     {/* Toast popup container */}
+      <ToastContainer />
     </div>
 
     

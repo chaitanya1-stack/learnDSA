@@ -88,9 +88,9 @@
   transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: bolder;
-  color: white; /* or any visible color */
+  color: white; 
   z-index: 1;
-  pointer-events: none; /* optional, lets you click through */
+  pointer-events: none; 
   width: 50vw;
 }
 .learnDSA {
@@ -98,16 +98,16 @@
   font-weight: bolder;
   background: linear-gradient(to right, #4f46e5, #22d3ee);
   background-clip: text;
-  -webkit-background-clip: text; /* for Safari/Chrome */
+  -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
-  color: transparent; /* fallback */
+  color: transparent; 
   display: block;
 
   animation: fadeIn 2s ease-in-out forwards;
 }
 
 .new {
-  margin-top: 2rem;  /* space from boldtext */
+  margin-top: 2rem;  
   font-size: 1.1rem;
   color: white;
   
@@ -126,7 +126,7 @@
 }
 
 
-/* Move @keyframes OUTSIDE the selector */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -148,22 +148,22 @@
 @media (max-width: 1024px) {
     .completeBox {
     padding: 1rem;
-    flex-direction: column; /* stack text and form vertically */
+    flex-direction: column; 
     align-items: center;
-    justify-content: flex-start; /* start from top */
-    min-height: 100vh; /* keep full viewport height minimum */
-    height: auto; /* allow growing beyond viewport */
+    justify-content: flex-start; 
+    min-height: 100vh; 
+    height: auto; 
   }
 
   .boldtext {
-    position: relative; /* so it flows normally on page */
+    position: relative; 
     top: auto;
     left: auto;
-    transform: none; /* reset transform */
+    transform: none; 
     font-size: 1.5rem;
     width: 100%;
     text-align: center;
-    margin-bottom: 2rem; /* spacing below text */
+    margin-bottom: 2rem; 
     z-index: 1;
   }
 
@@ -175,7 +175,7 @@
     width: 100%;
     max-width: 350px;
     padding: 2rem;
-    transform: none; /* reset transform */
+    transform: none; 
     margin-top: 100px;
      margin-bottom: 40px;
     z-index: 2;
