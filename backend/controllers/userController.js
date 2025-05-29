@@ -26,7 +26,7 @@ const loginUser= async(req,res)=> {
 
     try{
 
-        const user = await User.findOne({email});
+        const user = await User.findOne({email: email.trim().toLowerCase()});
        
            if(!user) throw new Error('User not found');
            
