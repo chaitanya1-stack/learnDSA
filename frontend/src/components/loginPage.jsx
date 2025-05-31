@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 import './loginPage.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,6 +13,8 @@ import api, { setAuthToken } from '../api';//
 function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
   setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,12 +29,13 @@ function LoginPage() {
 
       localStorage.setItem('token', token);
       setAuthToken(token);
-      toast.success(`🎉 Welcome, ${user.username}!`, {
+      toast.success(` Welcome, ${user.username}!`, {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 1000,
         hideProgressBar: false,
         pauseOnHover: true,
         draggable: true,
+        onClose: () => navigate('/dashboard'),
       });
 
       

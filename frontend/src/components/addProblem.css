@@ -1,0 +1,120 @@
+.add-problem-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2C2C2C;
+  min-height: 100vh;
+  padding-top: 0;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #4f46e5, #22d3ee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.add-problem-section {
+  background: #1f1f1f;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(79, 70, 229, 0.3);
+  width: 100%;
+  max-width: 600px;
+  color: #e0e0e0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-problem-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 20px rgba(79, 70, 229, 0.5);
+}
+
+.input-grid {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-grid input {
+  padding: 10px;
+  border: 1px solid #444466;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #2C2C2C;
+  color: #e0e0e0;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-grid input:hover {
+  border-color: #22d3ee;
+  transform: scale(1.02);
+}
+
+.input-grid input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 5px rgba(79, 70, 229, 0.6);
+}
+
+.input-grid input::placeholder {
+  color: #8888aa;
+  transition: color 0.3s ease;
+}
+
+.add-button {
+  padding: 10px 15px;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #3730a3;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 10px rgba(55, 48, 163, 0.4);
+}
+
+.notification {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeout 3s forwards;
+  transition: transform 0.3s ease;
+}
+
+.notification:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeout {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}

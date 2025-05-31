@@ -1,14 +1,14 @@
 const mongoose =require('mongoose');
-const User = require('./User');
+const User = require('../models/User');
 
 const problemSchema =new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId,
-        ref:User, required:true
+        ref: 'User', required:true
     },
 
     title: {type: String, required:true},
 
-    topics: {type:String},
+    topics: {type:[String]}, // store array
 
 
     rated: { type:String}, // for codeforces 
@@ -17,7 +17,7 @@ const problemSchema =new mongoose.Schema({
 
     link : {type: String},
 
-     status : {type: String, enum:['solved', 'unsolved', 'bookmark'],default:'unsolved'},
+     status : {type: [String], enum:['solved', 'unsolved', 'bookmark'],default:'unsolved'}, // store a  array
 
      date:{type:  Date, default:Date.now} // date problem was added
 
@@ -31,4 +31,5 @@ const problemSchema =new mongoose.Schema({
 
 
 // Exports the model named 'user' (MongoDB will make it users collection).
-module.exports = mongoose.model('problem', problemSchema);
+
+module.exports = mongoose.model('Problem', problemSchema);

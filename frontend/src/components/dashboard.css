@@ -1,0 +1,235 @@
+/* Base Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #2C2C2C;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;  /* prevent horizontal scroll */
+  overflow-y: hidden;
+}
+
+/* Layout */
+.fullcontainer {
+  height: 100vh;               /* fixed viewport height */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1rem 0 1rem;   /* removed bottom padding */
+  background-color: #2C2C2C;
+  box-sizing: border-box;
+  overflow-y: auto;            /* scroll inside if needed */
+}
+/* Main Heading */
+.boldtext1 {
+  font-weight: bolder;
+  color: white;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  z-index: 1;
+}
+
+/* Gradient Text */
+.learnDSA1 {
+  font-size: 8rem;
+  font-weight: bolder;
+  background: linear-gradient(to right, #4f46e5, #22d3ee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  max-width: 800px;
+  background-color: #3A3A3A;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.navbar:hover {
+  transform: translateY(-2px);
+  border-bottom: 2px solid #4fc3f7;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.navbar .nav-link:hover {
+  color: #f0a500 !important;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  width: 100%;
+  max-width: 1500px;
+  margin-bottom: -2rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+ 
+}
+
+/* Logout Button */
+.logout-btn {
+  background-color: #f87171;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #d45b5b;
+}
+
+/* Add Question Button */
+.add-question-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.add-question-btn {
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-question-btn:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+
+
+/* -------- Responsive Design -------- */
+@media (max-width: 1024px) {
+  .learnDSA1 {
+    font-size: 6rem;
+  }
+
+  .boldtext1 {
+    font-size: 2rem;
+  }
+
+  .navbar {
+    font-size: 1.1rem;
+    max-width: 95%;
+  }
+
+  .dashboard-header {
+    font-size: 1.1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .learnDSA1 {
+    font-size: 4rem;
+  }
+
+  .boldtext1 {
+    font-size: 1.5rem;
+  }
+
+  .navbar {
+    font-size: 1rem;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .dashboard-header {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .logout-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .learnDSA1 {
+    font-size: 3rem;
+  }
+
+  .boldtext1 {
+    font-size: 1.2rem;
+  }
+
+  .navbar {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .dashboard-header {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+}

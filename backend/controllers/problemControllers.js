@@ -6,6 +6,7 @@ const User = require('../models/User');
    const addProblem =async (req,res) =>{
 
     try{
+      
         const problem =await
         Problem.create({...req.body,
             user: req.user.id
@@ -50,20 +51,43 @@ const User = require('../models/User');
 
 
 
-    const updateProblem = async (req, res) => {
+   // -------------- UPDATED updateProblem -----------------
+const updateProblem = async (req, res) => {
   try {
-    const { status } = req.body;
-    const updated = await Problem.findOneAndUpdate(
-      { _id: req.params.id, user: req.user.id },
-      { status },
-      { new: true }
-    );
-    if (!updated) return res.status(404).json({ error: 'Problem not found' });
-    res.json(updated);
+    let problem = await Problem.findOne({ _id: req.params.id, user: req.user.id });
+    if (!problem) return res.status(404).json({ error: 'Problem not found' });
+
+    // <-- changed from single "status" string to booleans solved and bookmarked
+    const { solved, bookmarked } = req.body;
+
+    if (typeof solved === 'boolean') {
+      if (solved) {
+        if (!problem.status.includes('solved')) problem.status.push('solved');
+        problem.status = problem.status.filter(s => s !== 'unsolved');
+      } else {
+        if (!problem.status.includes('unsolved')) problem.status.push('unsolved');
+        problem.status = problem.status.filter(s => s !== 'solved');
+      }
+    }
+
+    if (typeof bookmarked === 'boolean') {
+      if (bookmarked) {
+        if (!problem.status.includes('bookmark')) problem.status.push('bookmark');
+      } else {
+        problem.status = problem.status.filter(s => s !== 'bookmark');
+      }
+    }
+
+    await problem.save();
+    res.json(problem);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
+// --------------------------------------------------------
+
+
+
 
 
 

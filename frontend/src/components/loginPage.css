@@ -153,6 +153,7 @@
     justify-content: flex-start; 
     min-height: 100vh; 
     height: auto; 
+    
   }
 
   .boldtext {
@@ -195,7 +196,9 @@
 @media (max-width: 480px) {
   .completeBox {
     align-items: center;
-    padding: 0.5rem;
+    padding: 1rem;
+    min-height: 100vh;
+  
   }
 
   .formbox {
