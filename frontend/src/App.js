@@ -5,6 +5,10 @@ import RegisterPage from './components/registerPage'; // Create this if you have
 import Dashboard from './components/dashboard';
 import  AddProblem from './components/addProblem';
 import  TotalQuestion from './components/totalQuestion';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 
 

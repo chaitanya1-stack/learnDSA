@@ -19,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/'); // redirect if no token
+      navigate('/login'); // redirect if no token// changed the login
       return;
     }
     setAuthToken(token);
@@ -84,7 +84,7 @@ const Dashboard = () => {
   // ======= LOGOUT FEATURE =======
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/');
+    navigate('/login');
   };
   // ==============================
 

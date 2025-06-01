@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import api, { setAuthToken } from '../api';
 import './dashboard.css';
 import { Link } from "react-router-dom";
-import ProblemPieChart from './ProblemPieChart.jsx'; // adjust path if needed
+import ProblemPieChart from './ProblemPieChart.jsx';
+import VerticalProgressBar from './VerticalProgressBar.jsx';
 
 const Dashboard = () => {
+  const streak = localStorage.getItem("streak") || 0; 
+  const [username, setUsername] = useState('');
   const [problems, setProblems] = useState([]);
   const [newProblem, setNewProblem] = useState({
     title: '',
@@ -19,9 +22,32 @@ const Dashboard = () => {
   const navigate = useNavigate(); 
 
   useEffect(() => {
+    const today = new Date().toDateString();
+    const lastVisit = localStorage.getItem("lastVisit");
+    let streak = Number(localStorage.getItem("streak")) || 0;
+
+    if (lastVisit !== today) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+
+      if (new Date(lastVisit).toDateString() === yesterday.toDateString()) {
+        streak += 1;
+      } else {
+        streak = 1;
+      }
+
+      localStorage.setItem("streak", streak);
+      localStorage.setItem("lastVisit", today);
+    }
+  }, []);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) setUsername(user.username);
+
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/'); // redirect if no token// changed the login
+      navigate('/');
       return;
     }
     setAuthToken(token);
@@ -37,99 +63,71 @@ const Dashboard = () => {
     }
   };
 
-  const handleAddProblem = async () => {
-    try {
-      const problemData = {
-        ...newProblem,
-        topics: newProblem.topics
-          .split(',')
-          .map((topic) => topic.trim())
-          .filter(Boolean),
-      };
-
-      await api.post('/problems', problemData);
-      setNewProblem({ title: '', topics: '', rated: '', platform: '', link: '' });
-      fetchProblems();
-    } catch (err) {
-      alert('Failed to add problem');
-    }
-  };
-
-  const toggleStatus = async (id, status, isActive) => {
-    try {
-      let payload = {};
-      if (status === 'bookmark') {
-        payload = { bookmarked: !isActive };
-      } else if (status === 'solved') {
-        payload = { solved: !isActive };
-      } else if (status === 'unsolved') {
-        payload = { solved: isActive ? true : false };
-      }
-
-      await api.patch(`/problems/${id}`, payload);
-      fetchProblems();
-    } catch (err) {
-      alert('Failed to update status');
-    }
-  };
-
-  const filteredProblems = problems.filter((p) => {
-    if (filter === 'solved') return p.status?.includes('solved');
-    if (filter === 'bookmarked') return p.status?.includes('bookmark');
-    return true;
-  });
-
   const total = problems.length;
   const solvedCount = problems.filter(p => p.status?.includes('solved')).length;
   const bookmarkedCount = problems.filter(p => p.status?.includes('bookmark')).length;
 
-  // ======= LOGOUT FEATURE =======
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/');
   };
-  // ==============================
 
   return (
     <div className="fullcontainer">
-      {/* Header with Welcome and Logout */}
-      <header className="dashboard-header">
-        <div className="welcome-text">Welcome, User</div>
-        <button className="logout-btn" onClick={handleLogout}>Logout</button>
-      </header>
+      <div className="dashboard-layout">
+        <div className="left-column">
+          <header className="dashboard-header">
+            <div className="welcome-text">Welcome, <span className="topusername">{username}</span> !</div>
+          </header>
 
-      {/* Title */}
-      <div className="boldtext1">
-        <span className="learnDSA1">learnDSA</span>
-      </div>
+          <div className="taking_count">
+            <div className="count-item"><i className="bi bi-database-check"></i> <span className="top">Total Questions Added : {total}</span></div>
+            <div className="count-item"><i className="bi bi-bookmark-check-fill"></i> <span className="top">Bookmarked Questions : {bookmarkedCount}</span></div>
+            <div className="count-item"><i className="bi bi-check-circle"></i> <span className="top">Solved Questions : {solvedCount}</span></div>
+          </div>
 
-      {/* Navbar */}
-      <nav className="navbar navbar-expand-lg">
-        <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item"><a className="nav-link" href="/totalquestions">All Problems</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Solved Problems</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Bookmarked Problems</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Unsolved Problems</a></li>
-            </ul>
+          <div className="logout"><button className="logout-btn" onClick={handleLogout}>Logout</button></div>
+        </div>
+
+        <div className="center-column">
+          <div className="add-question-container">
+            <Link to="/addproblem">
+              <button className="add-question-btn">Click here to add a new question</button>
+            </Link>
+          </div>
+
+          <div className="description_add_button">
+            Use the <span className="click_here">"Click here to add a new question"</span> button to log new DSA problems along with their links, topics, and status.
+          </div>
+
+          <div className="boldtext1"><span className="learnDSA1">learnDSA</span></div>
+
+          {/* ✅ Updated Navbar Links with query parameters */}
+          <nav className="navbar navbar-expand-lg">
+            <div className="container-fluid">
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                  <li className="nav-item"><Link className="nav-link" to="/totalquestions">All Problems</Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/totalquestions?filter=solved">Solved Problems</Link></li> {/* ✅ */}
+                  <li className="nav-item"><Link className="nav-link" to="/totalquestions?filter=bookmarked">Bookmarked Problems</Link></li> {/* ✅ */}
+                  <li className="nav-item"><Link className="nav-link" to="/totalquestions?filter=unsolved">Unsolved Problems</Link></li> {/* ✅ */}
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div className="streak-box">
+            Current Streak: <strong className="streak">{streak} day(s)</strong> 🔥
           </div>
         </div>
-      </nav>
 
-      {/*  Question Button */}
-      
-
-<div className="add-question-container">
-  <Link to="/addproblem">
-    <button className="add-question-btn">+ Add Question</button>
-  </Link>
-</div>
-
-
-
-      {/* Pie Chart */}
-      <ProblemPieChart className="pie" total={total} solved={solvedCount} />
+        <div className="right-column">
+          <div className="piechart"><ProblemPieChart total={total} solved={solvedCount} /></div>
+          <div className="progress_bar"><VerticalProgressBar value={(solvedCount / total) * 100} /></div>
+          <div className="percentage">Progress Percentage</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -29,6 +29,9 @@ function LoginPage() {
 
       localStorage.setItem('token', token);
       setAuthToken(token);
+       localStorage.setItem('token', res.data.token); //stores locally user token 
+       localStorage.setItem('user', JSON.stringify(res.data.user)); // stores locally user name
+
       toast.success(` Welcome, ${user.username}!`, {
         position: 'top-center',
         autoClose: 1000,
