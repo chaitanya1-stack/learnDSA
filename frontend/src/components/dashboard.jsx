@@ -77,9 +77,11 @@ const Dashboard = () => {
     <div className="fullcontainer">
       <div className="dashboard-layout">
         <div className="left-column">
+          <div className="dashboardheaderdiv">
           <header className="dashboard-header">
             <div className="welcome-text">Welcome, <span className="topusername">{username}</span> !</div>
           </header>
+          </div>
 
           <div className="taking_count">
             <div className="count-item"><i className="bi bi-database-check"></i> <span className="top">Total Questions Added : {total}</span></div>
@@ -96,26 +98,24 @@ const Dashboard = () => {
               <button className="add-question-btn">Click here to add a new question</button>
             </Link>
           </div>
-
+          <div className="description_add_buttondiv">
           <div className="description_add_button">
             Use the <span className="click_here">"Click here to add a new question"</span> button to log new DSA problems along with their links, topics, and status.
+          </div>
           </div>
 
           <div className="boldtext1"><span className="learnDSA1">learnDSA</span></div>
 
           {/* ✅ Updated Navbar Links with query parameters */}
-          <nav className="navbar navbar-expand-lg">
-            <div className="container-fluid">
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                  <li className="nav-item"><Link className="nav-link" to="/totalquestions">All Problems</Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/totalquestions?filter=solved">Solved Problems</Link></li> {/* ✅ */}
-                  <li className="nav-item"><Link className="nav-link" to="/totalquestions?filter=bookmarked">Bookmarked Problems</Link></li> {/* ✅ */}
-                  <li className="nav-item"><Link className="nav-link" to="/totalquestions?filter=unsolved">Unsolved Problems</Link></li> {/* ✅ */}
-                </ul>
-              </div>
-            </div>
-          </nav>
+          <div className="navbar">
+  
+    <div className="nav-item"><Link className="nav-link" to="/totalquestions">All Problems</Link></div>
+    <div className="nav-item"><Link className="nav-link" to="/totalquestions?filter=solved">Solved Problems</Link></div>
+    <div className="nav-item"><Link className="nav-link" to="/totalquestions?filter=bookmarked">Bookmarked Problems</Link></div>
+    <div className="nav-item"><Link className="nav-link" to="/totalquestions?filter=unsolved">Unsolved Problems</Link></div>
+  
+</div>
+
 
           <div className="streak-box">
             Current Streak: <strong className="streak">{streak} day(s)</strong> 🔥

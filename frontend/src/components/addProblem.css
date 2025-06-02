@@ -10,13 +10,14 @@
 }
 
 .header {
-  position: absolute;
-  top: 20px;
-  left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-5rem);
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 4rem;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to right, #4f46e5, #22d3ee);
@@ -112,6 +113,9 @@
 .notification:hover {
   transform: scale(1.05);
 }
+
+
+
 
 @keyframes fadeout {
   0% { opacity: 1; }

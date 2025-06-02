@@ -61,7 +61,9 @@ const AddProblem = () => {
   return (
     <div className="add-problem-page">
       <div className="header">
+        
         <div className="logo">learnDSA</div>
+      
       </div>
 
       <div className="add-problem-section">
@@ -79,7 +81,7 @@ const AddProblem = () => {
             onChange={(e) => setNewProblem({ ...newProblem, topics: e.target.value })}
           />
           <input
-            placeholder="Rated"
+            placeholder="Rated (optional)"
             value={newProblem.rated}
             onChange={(e) => setNewProblem({ ...newProblem, rated: e.target.value })}
           />
