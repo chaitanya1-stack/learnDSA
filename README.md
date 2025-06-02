@@ -52,18 +52,25 @@ cd learn-dsa
 
 ### 2️⃣ Setup Backend (Node.js + Express)
 
+```bash
 cd backend
 npm install
+```
 
 
 Create a .env file in the backend/ directory with the following content:
 
+```bash
 PORT=5050
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key 
+JWT_SECRET=your_jwt_secret_key
+```
 
 Start the backend server:
+
+```bash
 npm run dev
+```
 Server will run at: http://localhost:5050
 
 ---
@@ -71,12 +78,17 @@ Server will run at: http://localhost:5050
 ### 3️⃣ Setup Frontend (React)
 
 In a new terminal tab, run:
+
+```bash
 cd frontend
 npm install
 npm start
+```
 
 Ensure the API URL is correctly set in frontend/src/api.js:
+```bash
 const API_URL = 'http://localhost:5050/api';
+```
 
 ---
 
