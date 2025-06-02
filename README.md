@@ -45,7 +45,7 @@ Follow these steps to run the project on your local machine:
 
 ```bash
 git clone https://github.com/chaitanya1-stack/learnDSA.git
-cd learn-dsa
+cd learnDSA
 ```
 
 ---
