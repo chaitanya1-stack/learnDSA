@@ -51,7 +51,7 @@ const User = require('../models/User');
 
 
 
-   // -------------- UPDATED updateProblem -----------------
+   // --------------  updateProblem -----------------
 const updateProblem = async (req, res) => {
   try {
     let problem = await Problem.findOne({ _id: req.params.id, user: req.user.id });
