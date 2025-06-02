@@ -29,9 +29,9 @@ An interactive web platform to help students practice and organize Data Structur
 
 ## 📸 Screenshots
 
-| Login Page | Dashboard | Add Questions | All Questions |
+| Login Page | Dashboard | Add Questions |
 |------------|-----------|----------------|----------------|
-| ![Login](loginPage.png) | ![Dashboard](dashboardPage.png) | ![Add](addQuestionsPage.png) | ![All](allQuestions.png) |
+| ![Login](loginPage.png) | ![Dashboard](dashboardPage.png) | ![Add](addQuestionsPage.png) | 
 
 ---
 
