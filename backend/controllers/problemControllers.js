@@ -2,11 +2,12 @@ const Problem = require('../models/Problem');
 const User = require('../models/User'); 
 
 
-// add a problem if user wants to
+   // add a problem if user wants to
    const addProblem =async (req,res) =>{
 
     try{
-      
+        //...req.body spreads the incoming fields like title, topics, etc.
+        //user: req.user.id links the problem to the currently authenticated user (populated via middleware).
         const problem =await
         Problem.create({...req.body,
             user: req.user.id
@@ -51,13 +52,13 @@ const User = require('../models/User');
 
 
 
-   // --------------  updateProblem -----------------
-const updateProblem = async (req, res) => {
+   //  updateProblem 
+    const updateProblem = async (req, res) => {
   try {
-    let problem = await Problem.findOne({ _id: req.params.id, user: req.user.id });
-    if (!problem) return res.status(404).json({ error: 'Problem not found' });
+    let problem = await Problem.findOne({ _id: req.params.id, user: req.user.id }); //Fetches the problem by its ID (req.params.id) and ensures it belongs to the current user.
+    if (!problem) return res.status(404).json({ error: 'Problem not found' });//let is used because the object will be mutated (updated).
 
-    // <-- changed from single "status" string to booleans solved and bookmarked
+    // changed from single "status" string to booleans solved and bookmarked
     const { solved, bookmarked } = req.body;
 
     if (typeof solved === 'boolean') {
@@ -84,11 +85,6 @@ const updateProblem = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
-// --------------------------------------------------------
-
-
-
-
 
 
 
